@@ -61,10 +61,9 @@ print(isEnglish(text))
 from langdetect import detect
 
 # 获取一段文字
-# text1 = input("请输入一段文字：")
-text1 = ""
+
 # 执行语言检测
-language = detect(text1)
+language = detect(text)
 # 判断结果
 if language == 'ja':
     print("这段文字是日语。")
