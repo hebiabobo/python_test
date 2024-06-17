@@ -1,3 +1,6 @@
+import math
+import random
+
 total = ['item_one', 'item_two', 'item_three',
          'item_four', 'item_five']
 
@@ -241,3 +244,345 @@ b = tuple(a)
 print(b)
 a = frozenset('abcd')
 print(a)
+
+a = 60  # 60 = 0011 1100
+b = 13  # 13 = 0000 1101
+
+c = a & b  # 12 = 0000 1100
+print("1 - c 的值为：", c)
+
+c = a | b  # 61 = 0011 1101
+print("2 - c 的值为：", c)
+
+c = a ^ b  # 49 = 0011 0001
+print("3 - c 的值为：", c)
+
+c = ~a  # -61 = 1100 0011
+print("4 - c 的值为：", c)
+
+c = a << 2  # 240 = 1111 0000
+print("5 - c 的值为：", c)
+
+c = a >> 2  # 15 = 0000 1111
+print("6 - c 的值为：", c)
+
+a = 10
+b = 20
+list3 = [1, 2, 3, 4, 5]
+
+if a in list3:
+    print("1 - 变量 a 在给定的列表中 list 中")
+else:
+    print("1 - 变量 a 不在给定的列表中 list 中")
+
+if b not in list3:
+    print("2 - 变量 b 不在给定的列表中 list 中")
+else:
+    print("2 - 变量 b 在给定的列表中 list 中")
+
+# 修改变量 a 的值
+a = 2
+if a in list3:
+    print("3 - 变量 a 在给定的列表中 list 中")
+else:
+    print("3 - 变量 a 不在给定的列表中 list 中")
+
+a = 20
+b = 20
+
+if a is b:
+    print("1 - a 和 b 有相同的标识")
+else:
+    print("1 - a 和 b 没有相同的标识")
+
+if id(a) == id(b):
+    print("2 - a 和 b 有相同的标识")
+else:
+    print("2 - a 和 b 没有相同的标识")
+
+# 修改变量 b 的值
+b = 30
+if a is b:
+    print("3 - a 和 b 有相同的标识")
+else:
+    print("3 - a 和 b 没有相同的标识")
+
+if a is not b:
+    print("4 - a 和 b 没有相同的标识")
+else:
+    print("4 - a 和 b 有相同的标识")
+
+a = [1, 2, 3]
+b = a
+print(b is a)
+print(b == a)
+
+b = a[::]
+print(b)
+
+print(b is a)
+print(b == a)
+
+a = 1
+print(complex(a))
+
+a = -1.2
+print(math.ceil(a))
+print(math.floor(a))
+print(math.exp(a))
+# print(math.abs(a))
+print(math.fabs(a))
+print(math.log(math.e))  # e
+print(math.log10(1000))
+print(math.modf(a))  # 返回x的整数部分与小数部分，两部分的数值符号与x相同，整数部分以浮点型表示。
+print(round(a, 3))
+print(round(3.1415926535, 3))  # 3.142
+print(math.sqrt(2))
+print(random.choice(range(10)))
+print(random.randrange(1, 10, 2))
+print(random.random())
+print(random.uniform(1, 10))
+
+var1 = 'Hello World!'
+var2 = "Runoob"
+
+print("var1[0]: ", var1[0])
+print("var2[1:5]: ", var2[1:5])
+
+print('\'Hello, world!\'')  # 输出：'Hello, world!'
+
+print("Hello, world!\nHow are you?")  # 输出：Hello, world!
+#       How are you?
+
+print("Hello, world!\tHow are you?")  # 输出：Hello, world!    How are you?
+
+print("Hello,\b world!")  # 输出：Hello world!
+
+print("Hello,\f world!")  # 输出：
+# Hello,
+#  world!
+
+print("A 对应的 ASCII 值为：", ord('A'))  # 输出：A 对应的 ASCII 值为： 65
+
+print("\x41 为 A 的 ASCII 代码")  # 输出：A 为 A 的 ASCII 代码
+
+decimal_number = 42
+binary_number = bin(decimal_number)  # 十进制转换为二进制
+print('转换为二进制:', binary_number)  # 转换为二进制: 0b101010
+
+octal_number = oct(decimal_number)  # 十进制转换为八进制
+print('转换为八进制:', octal_number)  # 转换为八进制: 0o52
+
+hexadecimal_number = hex(decimal_number)  # 十进制转换为十六进制
+print('转换为十六进制:', hexadecimal_number)  # 转换为十六进制: 0x2a
+
+# !/usr/bin/python3
+
+a = "Hello"
+b = "Python"
+
+print("a + b 输出结果：", a + b)
+print("a * 2 输出结果：", a * 2)
+print("a[1] 输出结果：", a[1])
+print("a[1:4] 输出结果：", a[1:4])
+
+if ("H" in a):
+    print("H 在变量 a 中")
+else:
+    print("H 不在变量 a 中")
+
+if ("M" not in a):
+    print("M 不在变量 a 中")
+else:
+    print("M 在变量 a 中")
+
+print(r'\n')
+print(R'\n')
+
+# !/usr/bin/python3
+
+print("我叫 %s 今年 %d 岁!" % ('小明', 10))
+
+# !/usr/bin/python3
+
+para_str = """这是一个多行字符串的实例
+多行字符串可以使用制表符
+TAB ( \t )。
+也可以使用换行符 [ \n ]。
+也可以使用换行符 [ r"\n" ]。 # 没用
+"""
+print(para_str)
+
+name = 'Runoob'
+print(f'Hello {name}')
+print(f'{1 + 2}')
+
+w = {'name': 'Runoob', 'url': 'www.runoob.com'}
+print(f'{w["name"]}: {w["url"]}')
+
+x = 1
+print(f'{x + 1}')  # Python 3.6
+print(f'{x+1=}')  # Python 3.8
+
+list1 = ['Google', 'Runoob', "Zhihu", "Taobao", "Wiki"]
+
+# 读取第二位
+print("list[1]: ", list1[1])
+# 从第二位开始（包含）截取到倒数第二位（不包含）
+print("list[1:-2]: ", list1[1:-2])
+
+# !/usr/bin/python3
+
+list1 = ['Google', 'Runoob', 1997, 2000]
+
+print("第三个元素为 : ", list1[2])
+list1[2] = 2001
+print("更新后的第三个元素为 : ", list1[2])
+
+list1 = ['Google', 'Runoob', 'Taobao']
+list1.append('Baidu')
+print("更新后的列表 : ", list1)
+list1.insert(1, 'Facebook')
+print("更新后的列表 : ", list1)
+list1.reverse()
+print("翻转后的列表 : ", list1)
+list1.sort()
+print("排序后的列表 : ", list1)
+print(list1.pop(-2))  # 移除列表中的一个元素（默认最后一个元素），并且返回该元素的值
+print("移除列表中的一个元素 : ", list1)
+
+list1 = ['Google', 'Runoob', 1997, 2000]
+
+print("原始列表 : ", list1)
+del list1[2]
+print("删除第三个元素 : ", list1)
+
+for x in [1, 2, 3]: print(x, end=" ")
+
+squares = [1, 4, 9, 16, 121]
+squares += [36, 49, 64, 81, 100]
+print(squares)
+
+a = ['a', 'b', 'c']
+n = [1, 2, 3]
+x = [a, n]
+print(x)
+print(x[0])
+print(x[0][1])
+
+# 导入 operator 模块
+import operator
+
+a = [1, 2]
+b = [2, 3]
+c = [2, 3]
+d = [3, 2]
+print("operator.eq(a,b): ", operator.eq(a, b))  # False
+print("operator.eq(c,b): ", operator.eq(c, b))  # True
+print("operator.eq(c,b): ", operator.eq(c, d))  # False
+
+list_2d = [[0 for i in range(5)] for i in range(5)]
+list_2d[0].append(3)
+list_2d[0].append(5)
+list_2d[2].append(7)
+print(list_2d)  # [[0, 0, 0, 0, 0, 3, 5], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 7], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
+
+# 元组
+tup1 = (50)  # 元组中只包含一个元素时，需要在元素后面添加逗号 , ，否则括号会被当作运算符使用：
+print(type(tup1))
+tup1 = (50,)
+print(type(tup1))
+
+tup1 = (12, 34.56)
+tup2 = ('abc', 'xyz')
+
+# 以下修改元组元素操作是非法的。
+# tup1[0] = 100
+
+# 创建一个新的元组
+tup3 = tup1 + tup2
+print(tup3)
+
+# 使用大括号 {} 来创建空字典
+emptyDict = {}
+
+# 打印字典
+print(emptyDict)
+
+# 查看字典的数量
+print("Length:", len(emptyDict))
+
+# 查看类型
+print(type(emptyDict))
+
+tinydict = {'Name': 'Runoob', 'Age': 7, 'Class': 'First'}
+
+print("tinydict['Name']: ", tinydict['Name'])
+print("tinydict['Age']: ", tinydict['Age'])
+
+tinydict['Age'] = 8  # 更新 Age
+tinydict['School'] = "1212"  # 添加信息
+
+print("tinydict['Age']: ", tinydict['Age'])
+print("tinydict['School']: ", tinydict['School'])
+
+# tinydict = {'Name': 'Runoob', 'Age': 7, 'Class': 'First'}
+#
+# del tinydict['Name']  # 删除键 'Name'
+# tinydict.clear()  # 清空字典
+# del tinydict  # 删除字典
+#
+# print("tinydict['Age']: ", tinydict['Age'])
+# print("tinydict['School']: ", tinydict['School'])
+
+
+print(tinydict.items())
+dict12 = tinydict.fromkeys(tup1)
+print(dict12)
+
+
+def http_error(status):
+    match status:
+        case 400:
+            return "Bad request"
+        case 404:
+            return "Not found"
+        case 418:
+            return "I'm a teapot"
+        case 401 | 403 | 404:  # 一个 case 也可以设置多个匹配条件，条件使用 ｜ 隔开，例如：
+            return "Not allowed"
+        case _:
+            return "Something's wrong with the internet"
+
+
+mystatus = 400
+print(http_error(400))
+
+names = ['Bob', 'Tom', 'alice', 'Jerry', 'Wendy', 'Smith']
+new_names = [name.upper() for name in names if len(name) > 3]
+print(new_names)  # ['ALICE', 'JERRY', 'WENDY', 'SMITH']
+
+multiples = [i for i in range(30) if i % 3 == 0]
+print(multiples)  # [0, 3, 6, 9, 12, 15, 18, 21, 24, 27]
+
+listdemo = ['Google', 'Runoob', 'Taobao']
+# 将列表中各字符串值为键，各字符串的长度为值，组成键值对
+new_dict = {i: len(i) for i in listdemo}
+print(new_dict)
+
+dic = {i: math.pow(i, 2) for i in [1, 2, 3, 4, 5]}
+print(dic)
+set1 = {i ** 2 for i in (1, 2, 3, 4, 5)}
+print(set1)
+a = (i ** 3 for i in range(1, 6))
+print(a)# 返回的是生成器对象  <generator object <genexpr> at 0x7faf6ee20a50>
+print(type(a))
+
+print(tuple(a))  # 使用 tuple() 函数，可以直接将生成器对象转换成元组
+print(a)
+print(tuple(a))
+print(list(a))
+# 生成器在 Python 中是一种一次性使用的迭代器。转换生成器对象为元组后，生成器中的所有值都被消耗，
+# 生成器变为空，不能再生成值。因此，不能再将其转换为元组。如果需要多次访问生成器的值，应该在第一次转换时保存结果，或者每次需要时重新创建生成器实例。
+
+
