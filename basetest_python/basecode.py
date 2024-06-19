@@ -575,7 +575,7 @@ print(dic)
 set1 = {i ** 2 for i in (1, 2, 3, 4, 5)}
 print(set1)
 a = (i ** 3 for i in range(1, 6))
-print(a)# 返回的是生成器对象  <generator object <genexpr> at 0x7faf6ee20a50>
+print(a)  # 返回的是生成器对象  <generator object <genexpr> at 0x7faf6ee20a50>
 print(type(a))
 
 print(tuple(a))  # 使用 tuple() 函数，可以直接将生成器对象转换成元组
@@ -586,3 +586,112 @@ print(list(a))
 # 生成器变为空，不能再生成值。因此，不能再将其转换为元组。如果需要多次访问生成器的值，应该在第一次转换时保存结果，或者每次需要时重新创建生成器实例。
 
 
+# list2 = [1, 2, 3, 4]
+# it = iter(list2)
+# for x in it:
+#     print(x)
+# for x in list2:
+#     print(x)
+#
+# # !/usr/bin/python3
+#
+# import sys  # 引入 sys 模块
+#
+# list = [1, 2, 3, 4]
+# it = iter(list)  # 创建迭代器对象
+
+# while True:
+#     try:
+#         print(next(it))
+#     except StopIteration:
+#         sys.exit()
+
+
+# def countdown(n):
+#     while n > 0:
+#         yield n
+#         n -= 1
+#
+#
+# # 创建生成器对象
+# generator = countdown(5)
+#
+# # 通过迭代生成器获取值
+# print(next(generator))  # 输出: 5
+# print(next(generator))  # 输出: 4
+# print(next(generator))  # 输出: 3
+
+# # 使用 for 循环迭代生成器
+# for value in generator:
+#     print(value)  # 输出: 2 1
+
+f = lambda: "Hello, world!"
+print(f())  # 输出: Hello, world!
+
+x = lambda a: a + 10
+print(x(5))
+x = lambda a, b: a * b
+print(x(5, 6))
+x = lambda a, b, c: a + b + c
+print(x(5, 6, 2))
+
+
+def square(x):
+    return x * x
+
+
+numbers = [1, 2, 3, 4, 5]
+squared_numbers = map(square, numbers)
+print(squared_numbers)  # <map object at 0x0000015E8785BD00>
+print(list(squared_numbers))  # 输出: [1, 4, 9, 16, 25]
+
+numbers = [1, 2, 3, 4, 5]
+squared_numbers = map(lambda x: x * x, numbers)
+
+print(list(squared_numbers))  # 输出: [1, 4, 9, 16, 25]
+
+
+def add(x, y):
+    return x + y
+
+
+a = [1, 2, 3]
+b = [4, 5, 6]
+sums = map(add, a, b)
+
+print(list(sums))  # 输出: [5, 7, 9]
+
+strings = ['1', '2', '3', '4', '5']
+numbers = map(int, strings)
+
+print(list(numbers))  # 输出: [1, 2, 3, 4, 5]
+
+from functools import reduce
+
+
+def add(x, y):
+    return x + y
+
+
+numbers = [1, 2, 3, 4, 5]
+sum_result = reduce(add, numbers)
+print(sum_result)  # 输出: 15
+
+numbers = [1, 2, 3, 4, 5]
+sum_result = reduce(lambda x, y: x + y, numbers)
+print(sum_result)  # 输出: 15
+
+from functools import reduce
+
+
+def multiply(x, y):
+    return x * y
+
+
+numbers = [1, 2, 3, 4, 5]
+product_result = reduce(multiply, numbers)
+print(product_result)  # 输出: 120
+
+numbers = [1, 2, 3, 4, 5]
+sum_result = reduce(lambda x, y: x + y, numbers, 10)  # 初始值 10 会首先与序列中的第一个元素进行运算，然后再进行后续的累积计算。
+print(sum_result)  # 输出: 25
