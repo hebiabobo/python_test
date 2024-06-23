@@ -695,3 +695,56 @@ print(product_result)  # 输出: 120
 numbers = [1, 2, 3, 4, 5]
 sum_result = reduce(lambda x, y: x + y, numbers, 10)  # 初始值 10 会首先与序列中的第一个元素进行运算，然后再进行后续的累积计算。
 print(sum_result)  # 输出: 25
+
+
+class Human:
+    def __init__(self):
+        # self.不能丢
+        self.arms = 2
+        self.legs = 2
+        self.hair = '各种颜色的头发'
+
+    def walk(self):
+        print('直立行走')
+
+    def speak(self):
+        print('说着各式各样的语言')
+
+
+human = Human()
+print(human.hair)  # 输出：各种颜色的头发
+
+
+class Students(object):
+    def __init__(self, *args):
+        self.names = args
+
+    def __len__(self):
+        return len(self.names)
+
+    def __getitem__(self, idx):
+        return self.names[idx]
+
+
+ss = Students('Bob', 'Alice', 'Tim')
+print(len(ss))  # 3
+print(ss[1])  # Alice
+
+iterator = iter([1, 2, 3, 4])
+
+'''
+next() 函数是 Python 中用于从迭代器中获取下一个元素的内置函数。迭代器是一种可以记住遍历位置的对象，它使用 __iter__() 和 __next__() 方法来实现迭代。next() 函数提供了一种方便的方式来获取迭代器的下一个元素。
+
+用法和参数
+
+next(iterator[, default])
+iterator：一个迭代器对象。
+default（可选）：如果提供了这个参数，当迭代器没有更多元素时，会返回这个默认值，而不会抛出 StopIteration 异常。
+'''
+
+# 使用 next() 获取元素
+print(next(iterator))  # 输出: 1
+print(next(iterator))  # 输出: 2
+print(next(iterator))  # 输出: 3
+print(next(iterator))  # 输出: 4
+# print(next(iterator))  # 如果继续调用，会抛出 StopIteration 异常

@@ -63,7 +63,6 @@ path1 = r"E:\pythonProject\dataset\DUC-2004-Dataset-master\DUC2004_Summarization
 
 input_text = filter_text(path1)  # 输入的原始文本
 
-
 # 明确指定要使用的模型和版本
 model_name = "google-t5/t5-base"
 model_revision = "686f1db"
