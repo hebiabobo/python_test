@@ -2,6 +2,9 @@ import torch
 from transformers import AutoTokenizer
 from transformers import AutoModelForSeq2SeqLM
 from torch.cuda.amp import autocast
+from torch.utils.data import DataLoader
+
+from LLM_test.mt5_summarization import LCSTS, test_loop, collote_fn
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 print(f'Using {device} device')
@@ -75,3 +78,9 @@ summarys = tokenizer.batch_decode(
     clean_up_tokenization_spaces=False
 )
 print(summarys)
+
+'''在开始训练之前，先评估一下没有经过微调的模型在 LCSTS 测试集上的性能。'''
+test_data = LCSTS(r'E:\pythonProject\dataset\lcsts_tsv\data3.tsv')
+test_dataloader = DataLoader(test_data, batch_size=32, shuffle=False, collate_fn=collote_fn)
+
+test_loop(test_dataloader, model)
