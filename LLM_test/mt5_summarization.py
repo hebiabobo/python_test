@@ -101,3 +101,57 @@ def collote_fn(batch_samples):
 
 train_dataloader = DataLoader(train_data, batch_size=4, shuffle=True, collate_fn=collote_fn)
 valid_dataloader = DataLoader(valid_data, batch_size=4, shuffle=False, collate_fn=collote_fn)
+
+'''
+打印出一个 batch 的数据，验证是否处理正确
+'''
+batch = next(iter(train_dataloader))
+print(batch.keys())
+print('batch shape:', {k: v.shape for k, v in batch.items()})
+print(batch)
+
+from tqdm.auto import tqdm
+
+
+def train_loop(dataloader, model, optimizer, lr_scheduler, epoch, total_loss):
+    progress_bar = tqdm(range(len(dataloader)))  # 使用 tqdm 创建一个进度条
+    progress_bar.set_description(f'loss: {0:>7f}')  # 设置初始描述为损失为 0。
+    finish_batch_num = (epoch - 1) * len(dataloader)  # 计算在之前的 epoch 中已完成的批次数。
+
+    model.train()
+    '''
+    enumerate(dataloader, start=1)：遍历 dataloader 中的每个批次数据，并从1开始为每个批次数据进行编号。
+    batch 是当前批次的编号。
+    batch_data 是当前批次的数据。
+    '''
+    for batch, batch_data in enumerate(dataloader, start=1):
+        batch_data = batch_data.to(device)  # batch_data.to(device)：将当前批次的数据移动到指定的设备（通常是 GPU 或 CPU）。
+        outputs = model(**batch_data)  # batch_data 是一个包含模型输入数据的字典，通过解包操作 ** 将字典中的键值对作为参数传递给模型。(值)
+        loss = outputs.loss
+
+        optimizer.zero_grad()  # optimizer.zero_grad() 是 PyTorch
+        # 中用于清除优化器中累积梯度的函数。在每次反向传播之前调用这个函数是很重要的，否则梯度会累积，从而导致梯度计算错误和模型训练不稳定。
+        loss.backward()
+        optimizer.step()  # 利用计算得到的梯度更新模型参数。具体更新方式取决于优化器的类型（例如 SGD、Adam 等）
+        lr_scheduler.step()  #
+
+        total_loss += loss.item()  # 将当前批次的损失值累加到 total_loss，用来跟踪一个 epoch 中所有批次的总损失。
+        '''
+        在训练过程中动态更新进度条的描述，显示当前的平均损失。
+        
+        progress_bar 是一个 tqdm 进度条对象，用于在训练循环中可视化进度。
+        set_description 方法用于设置进度条的描述文本。
+        f'loss: {total_loss / (finish_batch_num + batch):>7f}' 是一个格式化字符串，动态计算并显示当前的平均损失。
+        
+        finish_batch_num: 已完成的批次数量，通常等于 (epoch-1) * len(dataloader)，表示在当前 epoch 之前已经完成的总批次数。
+        
+        f'loss: {total_loss / (finish_batch_num + batch):>7f}':
+        使用 Python 的 f-string 格式化方法，动态插入计算得到的平均损失值。
+        :>7f 指定了数值的格式，其中：
+        > 表示右对齐。
+        7 表示总长度至少为 7 个字符（包括小数点）。
+        f 表示浮点数格式。
+        '''
+        progress_bar.set_description(f'loss: {total_loss / (finish_batch_num + batch):>7f}')
+        progress_bar.update(1)  # 用于更新进度条。每调用一次该方法，进度条将前进指定的步数（在这里是 1 步）。这在训练循环中非常有用，因为它可以直观地显示训练过程的进度。
+    return total_loss

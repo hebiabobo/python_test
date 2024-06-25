@@ -747,4 +747,66 @@ print(next(iterator))  # 输出: 1
 print(next(iterator))  # 输出: 2
 print(next(iterator))  # 输出: 3
 print(next(iterator))  # 输出: 4
+
+
 # print(next(iterator))  # 如果继续调用，会抛出 StopIteration 异常
+
+
+def func(a, b, c):
+    print(a, b, c)
+
+
+func(**{"a": 1, "b": 2, "c": 3})
+
+from rouge import Rouge
+
+generated_summary = "I absolutely loved reading the Hunger Games"
+reference_summary = "I loved reading the Hunger Games"
+
+rouge = Rouge()
+
+'''
+基于准确率和召回率来计算 F1 值。
+ROUGE-1 度量 uni-grams 的重合情况，ROUGE-2 度量 bi-grams 的重合情况，
+而 ROUGE-L 则通过在生成摘要和参考摘要中寻找最长公共子串来度量最长的单词匹配序列
+'''
+
+scores = rouge.get_scores(
+    hyps=[generated_summary], refs=[reference_summary]
+)[0]
+print(scores)
+
+'''
+rouge 库默认使用空格进行分词，因此无法处理中文、日文等语言，最简单的办法是按字进行切分，
+当然也可以使用分词器分词后再进行计算，否则会计算出不正确的 ROUGE 值:
+'''
+generated_summary = "我在苏州大学学习计算机，苏州大学很美丽。"
+reference_summary = "我在环境优美的苏州大学学习计算机。"
+
+rouge = Rouge()
+
+TOKENIZE_CHINESE = lambda x: ' '.join(x)  # 按字进行切分
+
+# from transformers import AutoTokenizer
+# model_checkpoint = "csebuetnlp/mT5_multilingual_XLSum"
+# tokenizer = AutoTokenizer.from_pretrained(model_checkpoint)
+
+# TOKENIZE_CHINESE = lambda x: ' '.join(
+#     tokenizer.convert_ids_to_tokens(tokenizer(x).input_ids, skip_special_tokens=True)
+# )
+
+scores = rouge.get_scores(
+    hyps=[TOKENIZE_CHINESE(generated_summary)],
+    refs=[TOKENIZE_CHINESE(reference_summary)]
+)[0]
+print('ROUGE:', scores)
+scores = rouge.get_scores(
+    hyps=[generated_summary],
+    refs=[reference_summary]
+)[0]
+print('wrong ROUGE:', scores)
+print(TOKENIZE_CHINESE(generated_summary))
+
+
+
+
